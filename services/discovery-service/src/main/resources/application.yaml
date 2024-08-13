@@ -1,0 +1,7 @@
+spring:
+  config:
+    # This configuration is used to configure the default configuration
+    import: optional:configserver:http://localhost:8888
+  application:
+    # This configuration is used to configure the name of the default configuration
+    name: discovery-service

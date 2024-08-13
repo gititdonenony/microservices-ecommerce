@@ -1,0 +1,15 @@
+eureka:
+  instance:
+    # Specifies the hostname of the current instance (for self-registration)
+    hostname: localhost
+  client:
+    # Disables self-registration as this is a Eureka Server
+    registerWithEureka: false
+    # Disables fetching registry information as this is a Eureka Server
+    fetchRegistry: false
+    serviceUrl:
+      # Specifies the default zone for clients to discover the Eureka Server
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+server:
+  # Sets the port number for the Eureka Server
+  port: 8761

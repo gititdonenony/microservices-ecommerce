@@ -7,10 +7,12 @@ import com.nony.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -19,32 +21,39 @@ public class CustomerController {
     @Autowired
     private final CustomerService customerService;
 
-    //creates a new customer service instance
     @PostMapping("/create")
     public ResponseEntity<Customer> createCustomer(@RequestBody @Valid CustomerRequest customerRequest) {
-        return ResponseEntity.ok(customerService.createCustomer(customerRequest));
+        Customer createdCustomer = customerService.createCustomer(customerRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
-    //
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerResponse> findCustomerById(@PathVariable Long id) {
+        return customerService.findCustomerById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+
+    }
+
     @GetMapping("/customers")
-    public ResponseEntity<List<CustomerResponse>> findAll() {
+    public ResponseEntity<List<CustomerResponse>> findAllCustomers() {
         return ResponseEntity.ok(customerService.findAllCustomers());
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Void> updateCustomer(@RequestBody @Valid CustomerRequest customerRequest) {
-        customerService.createCustomer(customerRequest);
-        return ResponseEntity.accepted().build();
-    }
-
-    @GetMapping("/exists/{customerId}")
-    public ResponseEntity<Boolean> existsById(@PathVariable Long customerId) {
-        return ResponseEntity.ok(customerService.findById(customerId) != null);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CustomerResponse> updateCustomerById(@PathVariable Long id, @RequestBody @Valid CustomerRequest customerRequest) {
+        customerService.updateCustomerById(id, customerRequest);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        customerService.deleteById(id);
-        return ResponseEntity.accepted().build();
+    public ResponseEntity<Void> deleteCustomerById(@PathVariable Long id) {
+        customerService.deleteCustomerById(id);
+        return ResponseEntity.noContent().build();
     }
+
 }
+
+
+

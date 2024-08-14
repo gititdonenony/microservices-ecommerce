@@ -1,10 +1,10 @@
 spring:
   application:
-    name: customer-service # Service name
+    name: product-service # Service name
   server:
-    port: 8089 # Port for the service
+    port: 8081 # Port for the service
   datasource:
-    url: jdbc:mysql://localhost:3306/customer_db # Database connection URL
+    url: jdbc:mysql://localhost:3306/product_db # Database connection URL
     driver-class-name: com.mysql.cj.jdbc.Driver # JDBC driver class
     username: root # Database username
     password: root # Database password
@@ -16,6 +16,6 @@ spring:
     import: optional:configserver:http://localhost:8888 # (Optional) Imports configuration from config server
 
 # (Assuming these configurations belong to a different service)
-customer-service:
+product-service:
   server:
-    port: 1111 # Port for the customer service
+    port: 2222 # Port for the customer service

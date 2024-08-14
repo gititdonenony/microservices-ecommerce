@@ -1,9 +1,9 @@
 server:
-  port: 1111
+  port: 2222
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/customer_db
+    url: jdbc:mysql://localhost:3306/product_db
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver

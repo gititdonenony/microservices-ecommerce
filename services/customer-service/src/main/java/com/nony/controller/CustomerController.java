@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -52,7 +51,6 @@ public class CustomerController {
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();
     }
-
 }
 
 

@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CustomerServiceApplication",
+            "request": "launch",
+            "mainClass": "com.nony.CustomerServiceApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "DiscoveryServerApplication",
             "request": "launch",
             "mainClass": "com.nony.DiscoveryServerApplication",

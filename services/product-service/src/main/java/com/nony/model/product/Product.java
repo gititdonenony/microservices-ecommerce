@@ -1,24 +1,24 @@
-package com.nony.model;
+package com.nony.model.product;
 
-import com.nony.category.Category;
+import com.nony.model.category.Category;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
-    private double quantity;
+    private double availableQuantity;
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "category_id")

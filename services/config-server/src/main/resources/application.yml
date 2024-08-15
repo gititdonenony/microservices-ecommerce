@@ -1,7 +1,7 @@
 #Specifies the port on which the Config Server will listen.
 server:
   port: 8888
-  #Specifies the port on which the Config
+  #Specifies the port on which the config
 spring:
   profiles:
     active: native

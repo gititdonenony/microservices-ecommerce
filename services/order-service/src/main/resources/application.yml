@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: order-service # Service name
+  server:
+    port: 8081 # Port for the service
+  datasource:
+    url: jdbc:mysql://localhost:3306/order_db # Database connection URL
+    driver-class-name: com.mysql.cj.jdbc.Driver # JDBC driver class
+    username: root # Database username
+    password: root # Database password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # Sets the JPA schema update strategy (update in this case)
+      dialect: org.hibernate.dialect.MySQL8Dialect # Sets the Hibernate dialect for MySQL 8
+  config:
+    import: optional:configserver:http://localhost:8888 # (Optional) Imports configuration from config server
+
+# (Assuming these configurations belong to a different service)
+product-service:
+  server:
+    port: 3333 # Port for the customer service
